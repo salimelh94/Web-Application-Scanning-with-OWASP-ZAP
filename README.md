@@ -390,7 +390,28 @@ This assessment employed both **automated scanning** and **manual exploration** 
 
 ---
 
-> **Project Outcomes:** Identified common vulnerabilities, compared DAST methodologies, and developed evidence-based remediation strategies for SOC/AppSec reporting.
+
+## Project Summary & Learning Outcomes
+
+By completing this assessment, learners demonstrate proficiency in the following **AppSec** and **SOC** competencies:
+
+###  Core Technical Skills
+* **Vulnerability Scanning:** Executed both manual and automated workflows using **OWASP ZAP**, including site spidering and active scanning.
+* **Vulnerability Identification:** Successfully identified and categorized critical flaws:
+    * **Injection:** SQL Injection (Standard & Time-Based).
+    * **Broken Access Control:** Insecure Cookies and missing security headers.
+    * **Cross-Site Scripting (XSS):** Reflected and Persistent variants.
+
+###  Analytical & Strategic Skills
+* **Methodology Comparison:** Analyzed the differences between manual and automated testing to understand how each method covers specific "blind spots."
+* **Validation & Verification:** Validated automated alerts by reviewing raw HTTP evidence and testing payloads to filter out **false positives**.
+* **Risk Prioritization:** Strengthened decision-making skills by assigning severity levels (High/Med/Low) and prioritizing remediation based on business impact.
+
+###  Professional Reporting
+* **Technical Documentation:** Drafted clear, actionable findings including **Proof of Concept (PoC)** evidence.
+* **Remediation Guidance:** Provided dual-layered advice, covering both **immediate fixes** for developers and **architectural improvements** for long-term security posture.
+
+---
 
 
 
