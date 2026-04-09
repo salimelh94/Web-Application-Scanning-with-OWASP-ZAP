@@ -237,6 +237,28 @@ While the automated scan generated **261 alerts**, many were "Informational" or 
 ####  Validation & Overlap
 The automated scan confirmed the high-risk findings from the manual phase, providing a "double-check" that ensures no critical vulnerabilities were missed during the initial assessment.
 
+##  Comparison & Summary: Manual vs. Automated Scanning
+
+The contrast between manual and automated scans demonstrates the complementary roles of human-driven exploration and tool-driven automation in **AppSec workflows**.
+
+### Methodology Comparison
+
+| Feature | **Manual Exploration** | **Automated Scanning** |
+| :--- | :--- | :--- |
+| **Primary Focus** | Critical paths & real user interactions | Entire application surface area |
+| **Strengths** | Context-aware validation & logic flaws | High-volume payloads & scale |
+| **Discovery** | Targeted assessments | Hidden parameters & headers |
+| **Best For** | Persistent XSS & contextual problems | Broad coverage & hidden entry points |
+
+---
+
+### Key Insights
+
+* **Synergy is Essential:** Using both methods together provides a robust security posture. Automated scanning broadens the scope but increases noise, while manual scanning provides the precision needed for complex vulnerabilities.
+* **Context Matters:** The results indicate a "standard training setting" profile—a purposefully vulnerable frontend with a limited backend. This highlights why tool-only approaches often miss the bigger picture.
+* **The Bottom Line:** Integrating both methods is necessary to **minimize blind spots** and enhance **evidence-based reporting**.
+
+
 
 
 
