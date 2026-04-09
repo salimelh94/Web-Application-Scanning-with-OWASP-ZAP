@@ -182,17 +182,58 @@ The security profile of `testphp.vulnweb.com` aligns perfectly with its purpose 
 
 This creates a "safe-fail" environment: realistic enough to be dangerous to a web app, but secure enough to protect the infrastructure.
 
+##  Step 5: Run an Automated Active Scan
+
+To demonstrate the difference between targeted testing and broad-scale automation, a second scan was performed using ZAP’s **Automated Scan** feature. This involved both the **Standard Spider** and the **AJAX Spider** (for JavaScript-heavy elements) to map every possible endpoint.
+
+![images alt](https://github.com/salimelh94/Web-Application-Scanning-with-OWASP-ZAP/blob/3c95e70338b6ae3b7926ae37f0ed26135708bc95/images/8.png)
+
+### 1. Automated Scan Statistics
+Compared to the manual scan, the automated approach significantly expanded the attack surface:
+
+* **Target URL:** `http://testphp.vulnweb.com`
+* **Engines Used:** Standard Spider + AJAX Spider
+* **Total Runtime:** 36m 46s
+* **Total Requests:** 7,921 (vs. 4,218 manual)
+* **Total Alerts:** 261 (vs. 45 manual)
+
+  ![images alt](https://github.com/salimelh94/Web-Application-Scanning-with-OWASP-ZAP/blob/3c95e70338b6ae3b7926ae37f0ed26135708bc95/images/9.png)
+
+
+
+### 2. Manual vs. Automated Comparison
+
+| Vulnerability Category | Manual Scan | Automated Scan | Analyst Observations |
+| :--- | :---: | :---: | :--- |
+| **Reflected XSS** | 15 | 18 | Automated scan found 3 additional hidden parameters. |
+| **SQL Injection (MySQL)** | 29 | 14* | Some alerts overlapped; automated scan prioritized variations. |
+| **User-Agent Fuzzer** | 72 | 223 | Broader fuzzing revealed more server inconsistencies. |
+| **GET-for-POST** | 0 | 3 | New finding: Potential method misuse discovered by Spider. |
+| **XSLT Injection** | 0 | 2 | Newly discovered via deep crawling. |
+| **Critical Flaws (RCE/XXE)**| 0 | 0 | Consistency confirmed: Backend remains secure. |
+
+ ![images alt](https://github.com/salimelh94/Web-Application-Scanning-with-OWASP-ZAP/blob/3c95e70338b6ae3b7926ae37f0ed26135708bc95/images/10.png)
+
+
+*\*Note: Some SQLi alerts were consolidated or deduplicated by the automated engine during this run.*
+
+---
+
+### 3. Key Observations & Lessons Learned
+
+####  Increased Coverage
+The automated scan sent **2.5x more requests** than the manual exploration. By using both spiders, ZAP reached "hidden" paths and directories that a human user might overlook while simply clicking through the UI.
+
+####  Discovering the "Hidden" Surface
+The discovery of **XSLT Injection** and **GET-for-POST** vulnerabilities only during the automated phase highlights the power of ZAP's crawler. It systematically tests every parameter with various methods (GET vs. POST) that are not always obvious during manual browsing.
+
+####  Noise vs. Signal (The Analyst's Role)
+While the automated scan generated **261 alerts**, many were "Informational" or "Low" (like User-Agent anomalies). 
+* **The Lesson:** Automated scans provide the **quantity**, but the Manual scan provides the **quality**. An analyst must review automated results to filter out the "noise" and focus on exploitable findings like SQLi and XSS.
+
+####  Validation & Overlap
+The automated scan confirmed the high-risk findings from the manual phase, providing a "double-check" that ensures no critical vulnerabilities were missed during the initial assessment.
 
 
 
 
-
-
-
-
-
-
- 
-
-### 💡 Pro Tip:
-If this is your first time using the HUD, follow the **built-in HUD tutorial** that appears on the right/left panels of the browser window. It provides a great walkthrough of the tool's features.
