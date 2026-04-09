@@ -203,6 +203,9 @@ Compared to the manual scan, the automated approach significantly expanded the a
 
 ### 2. Manual vs. Automated Comparison
 
+ ![images alt](https://github.com/salimelh94/Web-Application-Scanning-with-OWASP-ZAP/blob/3c95e70338b6ae3b7926ae37f0ed26135708bc95/images/10.png)
+ 
+
 | Vulnerability Category | Manual Scan | Automated Scan | Analyst Observations |
 | :--- | :---: | :---: | :--- |
 | **Reflected XSS** | 15 | 18 | Automated scan found 3 additional hidden parameters. |
@@ -212,7 +215,7 @@ Compared to the manual scan, the automated approach significantly expanded the a
 | **XSLT Injection** | 0 | 2 | Newly discovered via deep crawling. |
 | **Critical Flaws (RCE/XXE)**| 0 | 0 | Consistency confirmed: Backend remains secure. |
 
- ![images alt](https://github.com/salimelh94/Web-Application-Scanning-with-OWASP-ZAP/blob/3c95e70338b6ae3b7926ae37f0ed26135708bc95/images/10.png)
+
 
 
 *\*Note: Some SQLi alerts were consolidated or deduplicated by the automated engine during this run.*
