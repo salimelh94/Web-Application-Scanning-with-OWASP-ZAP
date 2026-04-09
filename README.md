@@ -411,6 +411,102 @@ By completing this assessment, learners demonstrate proficiency in the following
 * **Technical Documentation:** Drafted clear, actionable findings including **Proof of Concept (PoC)** evidence.
 * **Remediation Guidance:** Provided dual-layered advice, covering both **immediate fixes** for developers and **architectural improvements** for long-term security posture.
 
+
+
+#  Web Application Vulnerability Assessment Report Template
+
+This is a clean, GitHub-ready Markdown version of your report template.
+
+```markdown
+# Vulnerability Assessment Report: [Application Name]
+
+**Analyst:** [Your Name]  
+**Date:** [YYYY-MM-DD]  
+**Target:** `[Target URL]`  
+**Tooling:** `OWASP ZAP 2.16.1`  
+**Type:** [Hybrid DAST & Manual Exploration]
+
+---
+
+## 1. Executive Summary
+[Briefly describe the purpose of the assessment and the scope. Summarize the high-level security posture of the application and the effectiveness of the combined manual/automated methodology.]
+
+---
+
+## 2. Scan Overview
+
+| Scan Type | Duration | HTTP Requests | Total Alerts | Notes |
+| :--- | :--- | :--- | :--- | :--- |
+| **Manual Explore** | [00m 00s] | [0,000] | [00] | Focused on auth logic |
+| **Automated Scan** | [00m 00s] | [0,000] | [00] | Full spider & active scan |
+
+* **Plugins Executed:** [e.g., 40+ Active Scan Plugins]
+* **Limitations:** [e.g., Logged-out state only, restricted to /api/v1 subfolder]
+
+---
+
+## 3. Key Findings Summary
+
+### 🔴 High Severity
+| Vulnerability | Count | Description | Impact |
+| :--- | :--- | :--- | :--- |
+| **[Vulnerability Name]** | [0] | [Brief description] | [e.g., RCE, Data Breach] |
+
+### 🟠 Medium Severity
+| Vulnerability | Count | Description | Impact |
+| :--- | :--- | :--- | :--- |
+| **[Vulnerability Name]** | [0] | [Brief description] | [e.g., Session Hijacking] |
+
+### 🟡 Low / 🔵 Informational
+| Severity | Vulnerability | Description |
+| :--- | :--- | :--- |
+| 🟡 Low | [e.g., Missing Headers] | Increases risk of UI redressing |
+| 🔵 Info | [e.g., Cookie Flags] | Best practice configuration |
+
+---
+
+## 4. Detailed Findings
+
+### [Finding Name, e.g., SQL Injection - Login Page]
+**Severity:** `🔴 HIGH`
+
+#### **Description**
+[Provide a concise explanation of the flaw based on your observations.]
+
+#### **Location & Evidence (PoC)**
+* **URL / Endpoint:** `[e.g., /admin/login.php]`
+* **Parameter / Field:** `[e.g., 'username']`
+* **HTTP Method:** `[POST]`
+* **Detection:** [Manual/Automated]
+* **Proof of Concept (PoC):**
+    ```sql
+    -- Payload Used:
+    ' OR 1=1 --
+    ```
+
+#### **Root Cause & Impact**
+* **Root Cause:** [e.g., Failure to use parameterized queries in the login module.]
+* **Impact:** [e.g., Allows unauthorized access to the admin dashboard without a password.]
+
+---
+
+## 5. Technical Interpretation
+* **Primary Weakness:** [e.g., Input Validation / Output Encoding]
+* **Security Strengths:** [e.g., Strong CSRF protections across all forms]
+* **Methodology Notes:** [e.g., Manual testing uncovered logic flaws that automated tools missed.]
+
+---
+
+## 6. Recommendations & Remediation
+
+### ✅ Immediate Fixes
+- [ ] [Action 1: e.g., Implement Prepared Statements]
+- [ ] [Action 2: e.g., Add X-Frame-Options headers]
+
+### 🏗️ Architectural Improvements
+* [e.g., Transition to a modern ORM to handle database interactions]
+* [e.g., Centralize input sanitization logic into a global middleware]
+
 ---
 
 
