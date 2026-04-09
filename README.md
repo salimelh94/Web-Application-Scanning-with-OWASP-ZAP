@@ -104,6 +104,58 @@ For every identified alert, ZAP provides deep technical context. When you click 
 ### 💡 Validation Tip
 Automated tools can sometimes produce **False Positives**. As a security analyst, you should always manually verify "High" risk alerts by attempting to replicate the attack (Evidence) in the browser to confirm it is actually exploitable.
 
+## 📉 Scan Summary: Active Scan Results
+
+The Active Scan was completed in **16m 37s**, executing **4,218 HTTP requests**. ZAP utilized over **40+ security plugins**, resulting in a total of **45 alerts**.
+
+### Executive Findings Summary
+
+| Severity | Vulnerability | Alerts | Analyst Interpretation |
+| :--- | :--- | :---: | :--- |
+| 🔴 **High** | **SQL Injection** | 29 | Multiple SQLi flaws (Standard & Time-Based). Targeted specifically at **MySQL**, suggesting the backend database type. |
+| 🔴 **High** | **Reflected XSS** | 15 | Input parameters fail to sanitize user data, allowing script injection in real-time responses. |
+| 🟡 **Medium** | **Persistent XSS** | 1 | Dangerous input is saved on the server, affecting all users who view the compromised page. |
+| 🟡 **Medium** | **Server-Side Attacks**| 0 | Successfully blocked OS Command Injection, SSTI, XXE, and RCE. |
+| 🟡 **Medium** | **File & Directory** | 0 | No Path Traversal or Directory Browsing vulnerabilities were found. |
+| ⚪ **Info** | **Fuzzing/Recon** | 0 | Malformed User-Agent and Parameter Tampering tests produced no leaks. |
+
+---
+
+### 🔍 Key Vulnerability Deep-Dive
+
+<details>
+<summary><b>1. SQL Injection (SQLi) - High Risk</b></summary>
+
+The scan reported **16 SQLi** and **13 MySQL Time-Based SQLi** alerts. 
+* **Key Finding:** The lack of alerts for Oracle or PostgreSQL confirms the backend is MySQL. 
+* **Technical Impact:** The application accepts unvalidated input directly into database queries. The presence of Time-Based SQLi is a "smoking gun," proving the server's predictable delay when processing malicious payloads.
+</details>
+
+<details>
+<summary><b>2. Cross-Site Scripting (XSS) - High Risk</b></summary>
+
+A total of **16 XSS** alerts were found (15 Reflected, 1 Persistent).
+* **Technical Impact:** The application fails to properly encode user input. While Reflected XSS is dangerous, the **Persistent XSS** finding is critical as it indicates the database itself is storing malicious scripts.
+* *Note: DOM-based XSS was skipped due to HUD browser connection constraints.*
+</details>
+
+<details>
+<summary><b>3. Server-Side & File System Security - Passed</b></summary>
+
+While the application layer is vulnerable to input attacks (SQLi/XSS), the core server configuration is robust:
+* **Server-Side Protection:** Effectively mitigated RCE, XXE, and SSRF attempts.
+* **Access Control:** Sensitive files (`.env`, `.htaccess`, `/WEB-INF`) are properly protected from unauthorized access or directory listing.
+</details>
+
+---
+
+### ⚙️ Technical Scan Statistics
+* **Total Runtime:** 16m 37s
+* **Total HTTP Requests:** 4,218
+* **Plugins Executed:** 40+
+* **Skipped Tests:** * *DOM-Based XSS* (HUD connection timeout)
+    * *Log4Shell* (OAST service not configured)
+    * *Script-based Active Scan Rules* (No custom scripts active)
 
 
 
