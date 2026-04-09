@@ -74,6 +74,36 @@ During this phase, ZAP automatically probes the application for critical flaws, 
 ![images alt](https://github.com/salimelh94/Web-Application-Scanning-with-OWASP-ZAP/blob/fd93123498c4b3859bf6ab381392830fe4d504bb/images/6.png)
 
 
+## 📊 Step 5: Review Vulnerabilities (Alerts Tab)
+
+Once the Active Scan is complete, ZAP populates the **Alerts Tab** with its findings. This phase is critical for assessing the actual risk and preparing the final security report.
+
+### 1. Understanding Risk Severities
+ZAP categorizes findings using a color-coded system based on impact:
+
+| Severity | Description |
+| :--- | :--- |
+| 🔴 **High** | Critical issues (e.g., SQLi) that allow full system compromise. |
+| 🟡 **Medium** | Significant weaknesses (e.g., XSS) that could lead to data theft. |
+| 🔵 **Low** | Minor configuration issues or best-practice violations. |
+| ⚪ **Informational** | Technical insights that are not directly exploitable. |
+
+### 2. Analyzing the Evidence
+For every identified alert, ZAP provides deep technical context. When you click an alert, review the following fields:
+
+* **URL & Parameter:** Exactly where the vulnerability exists and which input field is weak.
+* **Attack / Evidence:** The specific payload ZAP used and the server's response that proved the flaw.
+* **Description:** A clear explanation of what the vulnerability is.
+* **Solution:** Recommended remediation steps to fix the code.
+
+
+![images alt](https://github.com/salimelh94/Web-Application-Scanning-with-OWASP-ZAP/blob/6962cd001cd808741123579ac9b06ccafd3b9365/images/7.png)
+
+---
+
+### 💡 Validation Tip
+Automated tools can sometimes produce **False Positives**. As a security analyst, you should always manually verify "High" risk alerts by attempting to replicate the attack (Evidence) in the browser to confirm it is actually exploitable.
+
 
 
 
